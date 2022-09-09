@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class Vector3
 {
 	// private area
@@ -76,6 +78,9 @@ public:
 	// no return, values are changed internally
 	void operator/=(const float& scalar);
 
+	//Function that streams each axis position internally stored
+	void vOut();
+
 	// Public Variables
 
 	// The value along the x-axis
@@ -96,7 +101,7 @@ Vector3::Vector3()
 	, y(0.f)
 	, z(0.f)
 {
-
+	std::cout << "Default Constructor Vector3()\n";
 }
 
 // Parameterized Constructor
@@ -107,25 +112,25 @@ Vector3::Vector3(float value)
 	, y(value)
 	, z(value)
 {
-
+	std::cout << "Parameterized Constructor Vector3(float value)\n";
 }
 
-// Default Constructor
-// Accepts no parameters
+// Parameterized Constructor
+// Accepts a value for each axis
 // Returns nothing
 Vector3::Vector3(float x, float y, float z)
 	: x(x)
 	, y(y)
 	, z(z)
 {
-
+	std::cout << "Parameterized Constructor Vector3(float x, float y, float z)\n";
 }
 
 // Destructor
 // Accepts no parameters
 // Returns nothing
 Vector3::~Vector3() {
-
+	std::cout << "Destructor ~Vector3()\n";
 }
 
 // Copy Constructor
@@ -139,6 +144,8 @@ Vector3::Vector3(const Vector3& rhs)
 	x = rhs.x;
 	y = rhs.y;
 	z = rhs.z;
+
+	std::cout << "Copy Constructor Vector3(const Vector3& rhs)\n";
 }
 
 // Assignment Operator Overload
@@ -148,6 +155,9 @@ Vector3& Vector3::operator=(const Vector3& rhs) {
 	x = rhs.x;
 	y = rhs.y;
 	z = rhs.z;
+	
+	std::cout << "Assignment Operator Overload Vector3::operator=(const Vector3& rhs)\n";
+
 	return *this;
 }
 
@@ -157,38 +167,56 @@ Vector3& Vector3::operator=(const Vector3& rhs) {
 Vector3 Vector3::operator+(const Vector3& rhs) {
 
 	// TODO
+	//A new vector who will store result of the add operation and return it
+	//Vector3 vResult;
+	//vResult.x = x + rhs.x;
+	//vResult.y = y + rhs.y;
+	//vResult.z = z + rhs.z;
+	std::cout << "Add Operator Overload Vector3::operator+(const Vector3& rhs)\n";
 
-	return Vector3();
+	//Instead of creating a variable to store and return values
+	//Directly returning the operation optimize 2 lines of execution (operator+destruction)
+	return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
 }
 
-// Add Operator Overload
-// Accepts a reference to the right hand side of the add operation
+// Substract Operator Overload
+// Accepts a reference to the right hand side of the substract operation
 // Returns a copy to the new Vector3
 Vector3 Vector3::operator-(const Vector3& rhs) {
 
 	// TODO
 
-	return Vector3();
+	std::cout << "Substract Operator Overload Vector3::operator-(const Vector3& rhs)\n";
+
+	return Vector3(x - rhs.x, y - rhs.y, z - rhs.z);
 }
 
-// Add Operator Overload
-// Accepts a reference to the right hand side of the add operation
+// Multiply Operator Overload
+// Accepts a scalar for the multiply operation
 // Returns a copy to the new Vector3
 Vector3 Vector3::operator*(const float& scalar) {
 
 	// TODO
+	//A new vector who will store result of the multiply operation and return it
+	//Vector3 vResult;
+	//vResult.x = x * scalar;
+	//vResult.y = y * scalar;
+	//vResult.z = z * scalar;
+	std::cout << "Multiply Operator Overload Vector3::operator*(const float& scalar)\n";
 
-	return Vector3();
+	return Vector3(x * scalar, y * scalar, z * scalar);
 }
 
-// Add Operator Overload
-// Accepts a reference to the right hand side of the add operation
+// Division Operator Overload
+// Accepts a scalar for the division operation
 // Returns a copy to the new Vector3
 Vector3 Vector3::operator/(const float& scalar) {
 
 	// TODO
 
-	return Vector3();
+	std::cout << "Division Operator Overload Vector3::operator/(const float& scalar)\n";
+
+	return Vector3(x / scalar, y / scalar, z / scalar);
 }
 
 // Add Assignment Operator Overload
@@ -197,7 +225,11 @@ Vector3 Vector3::operator/(const float& scalar) {
 void Vector3::operator+=(const Vector3& rhs) {
 
 	// TODO
+	x += rhs.x;
+	y += rhs.y;
+	z += rhs.z;
 
+	std::cout << "Add Assignment Operator Overload Vector3::operator+=(const Vector3& rhs)\n";
 }
 
 // Subtract Assignment Operator Overload
@@ -206,7 +238,11 @@ void Vector3::operator+=(const Vector3& rhs) {
 void Vector3::operator-=(const Vector3& rhs) {
 
 	// TODO
+	x -= rhs.x;
+	y -= rhs.y;
+	z -= rhs.z;
 
+	std::cout << "Subtract Assignment Operator Overload Vector3::operator-=(const Vector3& rhs)\n";
 }
 
 // Multiply Assignment Operator Overload
@@ -215,7 +251,11 @@ void Vector3::operator-=(const Vector3& rhs) {
 void Vector3::operator*=(const float& scalar) {
 
 	// TODO
+	x *= scalar;
+	y *= scalar;
+	z *= scalar;
 
+	std::cout << "Multiply Assignment Operator Overload Vector3::operator*=(const Vector3& rhs)\n";
 }
 
 // Division Assignment Operator Overload
@@ -224,6 +264,14 @@ void Vector3::operator*=(const float& scalar) {
 void Vector3::operator/=(const float& scalar) {
 
 	// TODO
+	x /= scalar;
+	y /= scalar;
+	z /= scalar;
 
+	std::cout << "Division Assignment Operator Overload Vector3::operator/=(const Vector3& rhs)\n";
 }
 
+//Function that streams each axis position internally stored
+void Vector3::vOut() {
+	std::cout << "Vector: (" << x << ", " << y << ", " << z << ")\n";
+}
