@@ -178,7 +178,22 @@ void Vector3::operator/=(const float& scalar) {
 	//std::cout << "Division Assignment Operator Overload Vector3::operator/=(const Vector3& rhs)\n";
 }
 
-//Function that streams each axis position internally stored
+// Function that streams each axis position internally stored
 void Vector3::vOut() {
-	std::cout << "(" << x << ", " << y << ", " << z << ")";
+	std::cout << "(" << x << ", " << y << ", " << z << ")\n";
+}
+
+// Normalize changes the value of the vector to be a unit lenght
+void Vector3::Normalize() {
+	*this /= Magnitude();
+}
+
+// Magnitude will return the lenght of then vector
+float Vector3::Magnitude() {
+	return sqrt(x * x + y * y + z * z);;
+}
+
+// Inverse will invert the direction of the vector
+Vector3 Vector3::Inverse() {
+	return *this * -1.f;
 }

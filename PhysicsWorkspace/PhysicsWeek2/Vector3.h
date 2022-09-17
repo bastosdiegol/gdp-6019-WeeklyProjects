@@ -86,6 +86,15 @@ public:
 	// no return, values are changed internally
 	void operator/=(const float& scalar);
 
-	//Function that streams each axis position stored
+	// Function that streams each axis position stored
 	void vOut();
+
+	// Normalize changes the value of the vector to be a unit lenght
+	void Normalize();
+
+	// Magnitude will return the lenght of then vector
+	float Magnitude();
+
+	// Inverse will invert the direction of the vector
+	Vector3 Inverse();
 };
