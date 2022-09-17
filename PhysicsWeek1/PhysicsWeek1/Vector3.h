@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 
 class Vector3
@@ -7,6 +6,15 @@ class Vector3
 	// private area
 
 public:
+	// Public Variables
+	// The value along the x-axis
+	float x;
+
+	// The value along the y-axis
+	float y;
+
+	// The value along the z-axis
+	float z;
 
 	// Default Constructor
 	// Accepts no parameters
@@ -78,17 +86,6 @@ public:
 	// no return, values are changed internally
 	void operator/=(const float& scalar);
 
-	//Function that streams each axis position internally stored
+	//Function that streams each axis position stored
 	void vOut();
-
-	// Public Variables
-
-	// The value along the x-axis
-	float x;
-
-	// The value along the y-axis
-	float y;
-
-	// The value along the z-axis
-	float z;
 };

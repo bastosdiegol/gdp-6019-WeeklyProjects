@@ -2,12 +2,7 @@
 
 #include "Vector3.h"
 
-void PrintVector(const Vector3& v)
-{
-	std::cout << "(" << v.x << ", " << v.y << ", " << v.z << ")";
-}
-
-bool CompareVector(const Vector3& v, int x, int y, int z)
+bool CompareVector(const Vector3& v, float x, float y, float z)
 {
 	if (v.x == x && v.y == y && v.z == z)
 		return true;
@@ -27,7 +22,7 @@ void TestVector3Implementations()
 	// operator+
 	result = vA + vB;
 	std::cout << "vA + vB = ";
-	PrintVector(result);
+	result.vOut();
 	std::cout << "\n";
 	if (CompareVector(result, vA.x + vB.x, vA.y + vB.y, vA.z + vB.z))
 		std::cout << "Correct!\n";
@@ -37,7 +32,7 @@ void TestVector3Implementations()
 	// operator-
 	result = vA - vB;
 	std::cout << "vA - vB = ";
-	PrintVector(result);
+	result.vOut();
 	std::cout << "\n";
 	if (CompareVector(result, vA.x - vB.x, vA.y - vB.y, vA.z - vB.z))
 		std::cout << "Correct!\n";
@@ -47,7 +42,7 @@ void TestVector3Implementations()
 	// operator*
 	result = vA * 3;
 	std::cout << "vA * 3 = ";
-	PrintVector(result);
+	result.vOut();
 	std::cout << "\n";
 	if (CompareVector(result, vA.x * 3, vA.y * 3, vA.z * 3))
 		std::cout << "Correct!\n";
@@ -57,7 +52,7 @@ void TestVector3Implementations()
 	// operator/
 	result = vA / 3;
 	std::cout << "vA / 3 = ";
-	PrintVector(result);
+	result.vOut();
 	std::cout << "\n";
 	if (CompareVector(result, vA.x / 3, vA.y / 3, vA.z / 3))
 		std::cout << "Correct!\n";
@@ -68,7 +63,7 @@ void TestVector3Implementations()
 	result = vA;
 	result += vB;
 	std::cout << "vA += vB = ";
-	PrintVector(result);
+	result.vOut();
 	std::cout << "\n";
 	if (CompareVector(result, vA.x + vB.x, vA.y + vB.y, vA.z + vB.z))
 		std::cout << "Correct!\n";
@@ -79,7 +74,7 @@ void TestVector3Implementations()
 	result = vA;
 	result -= vB;
 	std::cout << "vA - vB = ";
-	PrintVector(result);
+	result.vOut();
 	std::cout << "\n";
 	if (CompareVector(result, vA.x - vB.x, vA.y - vB.y, vA.z - vB.z))
 		std::cout << "Correct!\n";
@@ -90,7 +85,7 @@ void TestVector3Implementations()
 	result = vA;
 	result *= 3;
 	std::cout << "vA += vB = ";
-	PrintVector(result);
+	result.vOut();
 	std::cout << "\n";
 	if (CompareVector(result, vA.x * 3, vA.y * 3, vA.z * 3))
 		std::cout << "Correct!\n";
@@ -101,7 +96,7 @@ void TestVector3Implementations()
 	result = vA;
 	result /= 3;
 	std::cout << "vA /= 3 = ";
-	PrintVector(result);
+	result.vOut();
 	std::cout << "\n";
 	if (CompareVector(result, vA.x / 3, vA.y / 3, vA.z / 3))
 		std::cout << "Correct!\n";
@@ -132,15 +127,13 @@ int main(int argc, char** argv) {
 	//vC /= 5;
 	//vC.vOut();
 
-	////vC = vC - vB;
-	////vC.vOut();
+	//vC = vC - vB;
+	//vC.vOut();
 
 	//vC = vB / 2;
 	//vC.vOut();
 
 	TestVector3Implementations();
-
-	system("Pause");
 
 	return EXIT_SUCCESS;
 }
