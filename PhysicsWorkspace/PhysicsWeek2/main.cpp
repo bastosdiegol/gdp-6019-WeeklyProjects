@@ -1,5 +1,11 @@
 #include <iostream>
+
 #include "Vector3.h"
+#include "Particle.h"
+
+void PrintParticleInfo(const Particle& p) {
+	std::cout << "Velocity: " << p.velocity.y << "\nPosition: " << p.position.y << "\n\n";
+}
 
 void VectorTest() {
 	Vector3 v(2, 3, 4);
@@ -17,8 +23,27 @@ void VectorTest() {
 	v.vOut();
 }
 
+void ParticleTest() {
+	Particle p;
+	p.position = Vector3(0.f);
+	p.velocity = Vector3(0.f, 5.f, 0.f);
+	p.acceleration = Vector3(0.f, -1.f, 0.f);
+
+	while (p.position.y >= 0) {
+		p.Integrate(0.1f);
+		PrintParticleInfo(p);
+	}
+}
+
+// NewPosition = OldPosition + Velocity * deltaTime
+// p1 = p0 + v * dt
+
+// NewVelocity = OldVelocity + Acceleration * deltaTime
+// v1 = v0 + a * dt
+
 int main(int argc, char** argv) {
-	VectorTest();
+	//VectorTest();
+	ParticleTest();
 
 	return EXIT_SUCCESS;
 }
