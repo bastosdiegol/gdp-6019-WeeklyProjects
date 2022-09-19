@@ -73,7 +73,7 @@ Vector3& Vector3::operator=(const Vector3& rhs) {
 // Add Operator Overload
 // Accepts a reference to the right hand side of the add operation
 // Returns a copy to the new Vector3
-Vector3 Vector3::operator+(const Vector3& rhs) {
+Vector3 Vector3::operator+(const Vector3& rhs) const {
 
 	// TODO
 	//A new vector who will store result of the add operation and return it
@@ -91,7 +91,7 @@ Vector3 Vector3::operator+(const Vector3& rhs) {
 // Substract Operator Overload
 // Accepts a reference to the right hand side of the substract operation
 // Returns a copy to the new Vector3
-Vector3 Vector3::operator-(const Vector3& rhs) {
+Vector3 Vector3::operator-(const Vector3& rhs) const {
 
 	// TODO
 	//std::cout << "Substract Operator Overload Vector3::operator-(const Vector3& rhs)\n";
@@ -102,7 +102,7 @@ Vector3 Vector3::operator-(const Vector3& rhs) {
 // Multiply Operator Overload
 // Accepts a scalar for the multiply operation
 // Returns a copy to the new Vector3
-Vector3 Vector3::operator*(const float& scalar) {
+Vector3 Vector3::operator*(const float& scalar) const {
 
 	// TODO
 	//A new vector who will store result of the multiply operation and return it
@@ -118,7 +118,7 @@ Vector3 Vector3::operator*(const float& scalar) {
 // Division Operator Overload
 // Accepts a scalar for the division operation
 // Returns a copy to the new Vector3
-Vector3 Vector3::operator/(const float& scalar) {
+Vector3 Vector3::operator/(const float& scalar) const {
 
 	// TODO
 	//std::cout << "Division Operator Overload Vector3::operator/(const float& scalar)\n";
@@ -181,6 +181,14 @@ void Vector3::operator/=(const float& scalar) {
 // Function that streams each axis position internally stored
 void Vector3::vOut() {
 	std::cout << "(" << x << ", " << y << ", " << z << ")\n";
+}
+
+// Add Scaled Vector
+// Adds a vector that is scaled by a provided scalar to
+// this vector.
+void Vector3::addScaledVector(const Vector3& vector, float scalar)
+{
+	*this += vector * scalar;
 }
 
 // Normalize changes the value of the vector to be a unit lenght

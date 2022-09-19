@@ -1,7 +1,9 @@
 #include <iostream>
+#include <cmath>
 
 #include "Vector3.h"
 #include "Particle.h"
+#include "ParticleManager.h"
 
 void PrintParticleInfo(const Particle& p) {
 	std::cout << "Velocity: " << p.velocity.y << "\nPosition: " << p.position.y << "\n\n";
@@ -35,15 +37,62 @@ void ParticleTest() {
 	}
 }
 
-// NewPosition = OldPosition + Velocity * deltaTime
-// p1 = p0 + v * dt
+class Tank {
+public:
+	Tank() {}
+	~Tank() {}
 
-// NewVelocity = OldVelocity + Acceleration * deltaTime
-// v1 = v0 + a * dt
+	Vector3 position;
+	float radius;
+};
+
+void ParticleManagerTest(int xVelocity, int yVelocity) {
+	Tank enemyTank;
+	enemyTank.position = Vector3(80.0f, 0.0f, 0.0f);
+	enemyTank.radius = 2; // Hit > [78.f, 82.f]
+
+	ParticleManager particleManager;
+
+	Particle& p = particleManager.CreateParticle(Vector3(0, 1, 0));
+	p.velocity = Vector3((float)xVelocity, (float)yVelocity, 0);
+
+	// Cannon --->
+
+	for (int i = 0; i < 100; i++) {
+		particleManager.Integrate(0.01f);
+	}
+
+	float distanceToTarget = abs(enemyTank.position.x - p.position.x);
+	// Why abs -> ensure to have a positive result
+	//  a+b  ===  b+a
+	//  a-b  =/=  b-a
+	// |a-b| === |b-a|
+
+	std::cout << "------------------------\n\n";
+
+	if (distanceToTarget <= enemyTank.radius) {
+		std::cout << "Direct Hit!\n";
+	}
+	else {
+		std::cout << "Landed at '" << p.position.x << "' Missed by "
+			<< distanceToTarget << " meters!\n";
+	}
+}
+
 
 int main(int argc, char** argv) {
+	if (argc != 3) {
+		std::cout << "Requires x and y velocity!\n";
+		return EXIT_FAILURE;
+	}
 	//VectorTest();
-	ParticleTest();
+	//ParticleTest();
 
+	int xVelocity, yVelocity;
+	sscanf_s(argv[1], "%d", &xVelocity);
+	sscanf_s(argv[2], "%d", &yVelocity);
+
+	ParticleManagerTest(xVelocity, yVelocity);
+	
 	return EXIT_SUCCESS;
 }

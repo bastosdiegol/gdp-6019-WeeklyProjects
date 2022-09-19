@@ -44,27 +44,27 @@ public:
 	// Assignment Operator Overload
 	// Accepts a reference to another Vector3
 	// Returns a refernce to the new Vector3
-	Vector3& operator=(const Vector3& rhs);
+	Vector3& operator=(const Vector3& rhs) ;
 
 	// Add Operator Overload
 	// Accepts a reference to the right hand side of the operation
 	// Returns a copy to the new Vector3
-	Vector3 operator+(const Vector3& rhs);
+	Vector3 operator+(const Vector3& rhs) const;
 
 	// Minus Operator Overload
 	// Accepts a reference to the right hand side of the operation
 	// Returns a copy to the new Vector3
-	Vector3 operator-(const Vector3& rhs);
+	Vector3 operator-(const Vector3& rhs) const;
 
 	// Multiply Operator Overload
 	// Accepts a reference to the right hand side of the operation
 	// Returns a copy to the new Vector3
-	Vector3 operator*(const float& scalar);
+	Vector3 operator*(const float& scalar) const;
 
 	// Division Operator Overload
 	// Accepts a reference to the right hand side of the operation
 	// Returns a copy to the new Vector3
-	Vector3 operator/(const float& scalar);
+	Vector3 operator/(const float& scalar) const;
 
 	// Addition assignment Operator Overload
 	// Accepts a reference to the right hand side of the operation
@@ -88,6 +88,11 @@ public:
 
 	// Function that streams each axis position stored
 	void vOut();
+
+	// Add Scaled Vector
+	// Adds a vector that is scaled by a provided scalar to
+	// this vector.
+	void addScaledVector(const Vector3& vector, float scalar);
 
 	// Normalize changes the value of the vector to be a unit lenght
 	void Normalize();
